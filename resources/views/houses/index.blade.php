@@ -23,5 +23,8 @@
                 <p>Nothing to see here sorry</p>
             @endforelse
         </section>
+        <div class="pagination">
+            <p>{{$houses->links()}}</p>
+        </div>
     </div>
 @endsection

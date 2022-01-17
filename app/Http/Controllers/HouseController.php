@@ -14,11 +14,11 @@ class HouseController extends Controller
      */
     public function index()
     {
-        $houses = House::all();
+        $houses = House::paginate(12);
         return view('houses.index', compact('houses'));
     }
 
-    /**
+    /*
      * Display the specified resource.
      *
      * @param  \App\Models\House  $house

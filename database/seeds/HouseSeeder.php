@@ -1,5 +1,6 @@
 <?php
 use App\Models\House;
+use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
 
 class HouseSeeder extends Seeder
@@ -9,10 +10,23 @@ class HouseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
-        //
-        $houses =[
+        for ($i=0; $i < 20; $i++) { 
+            $_house = new House();
+            $_house->image = $faker->imageUrl();
+            $_house->address = $faker->streetAddress();
+            $_house->city = $faker->city();
+            $_house->post_code = $faker->randomElement(['ABC123','EFG456','HAS789']);
+            $_house->rooms = $faker->numberBetween(3,5);
+            $_house->square_meters = $faker->numberBetween(200,400);
+            $_house->for_sale = $faker->boolean();
+            $_house->to_late = $faker->boolean();
+            $_house->is_available = $faker->boolean(100);
+            $_house->save();
+        }
+        
+        /* $houses =[
                 [
                     'image' => 'https://picsum.photos/id/1015/400/300',
                     'address' => '6th Avenue 123',
@@ -57,9 +71,9 @@ class HouseSeeder extends Seeder
                     'to_late' => true,
                     'is_available' => true,
                 ],
-        ];
+        ]; */
 
-        foreach ($houses as $house) {
+        /* foreach ($houses as $house) {
             $_house = new House();
             $_house->image = $house['image'];
             $_house->address = $house['address'];
@@ -71,6 +85,6 @@ class HouseSeeder extends Seeder
             $_house->to_late = $house['to_late'];
             $_house->is_available = $house['is_available'];
             $_house->save();
-        }
+        } */
     }
 }
